@@ -8,3 +8,8 @@ Installation
     cd DeveloperChallenge
     mkvirtualenv env
     pip install -r requirements.txt
+
+Run locally
+-----------
+
+    python route.py
