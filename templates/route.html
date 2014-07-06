@@ -1,18 +1,114 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Developer challenge</title>
+<head>
+    <title>Developer challenge</title>
 
-        <style>
-            p {
-                color: gray;
-                font: 25px Helvetica, sans-serif;
-                margin-top: 200px;
-                text-align: center;
-            }
-        </style>
-    </head>
-    <body>
-        <p>This page intentionally blank</p>
-    </body>
+    <style>
+        p {
+        color: gray;
+        font: 25px Helvetica, sans-serif;
+        margin-top: 200px;
+        text-align: center;
+        }
+        h1 {
+        color: gray;
+        font: 30px Helvetica, sans-serif;
+        margin-top: 10px;
+        text-align: centre;
+        }
+        h2 {
+        color: #ffa500;
+        font: 22px Helvetica, sans-serif;
+        margin-top: 4px;
+        text-align: left;
+        }
+        td {
+        color: gray;
+        font: 11px Helvetica, sans-serif;
+        margin-top: 10px;
+        text-align: left;
+        }
+        em {
+        color: #ffa500;
+        }
+        table {
+        margin-top: 10px;
+        }
+        #div-1 {
+        position:relative;
+        height:300px
+        }
+        #div-1a {
+        position:absolute;
+        top:0;
+        right:0;
+        width:50%;
+        }
+        #div-1b {
+        position:absolute;
+        top:0;
+        left:0;
+        width:50%;
+        }
+        #div-1c {
+        position:absolute;
+        bottom:0;
+        left:0;
+        }
+    </style>
+</head>
+<body>
+<h1> StackOverflow scraping results</h1>
+<div id="div-1">
+
+<div id="div-1b">
+    {% if tag_results %}
+    <h2>Tagging results </h2>
+    {% endif %}
+    <table id="scraper">
+        <!--           &lt;!&ndash;<thead>&ndash;&gt;
+        &lt;!&ndash;<tr><h1>StackOverflow Results</h1></tr>&ndash;&gt;
+        &lt;!&ndash;</thead>-->
+        <tbody>
+        {% for question in tag_results %}
+        <td class="col_spacer"></td>
+        <td>There are <b>{{question.numberOf}}</b> questions tagged with <b>{{question.tag}}</b></td>
+        <tr></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div id="div-1c">
+{% if top_results %}
+<h2>Top results </h2>
+{% endif %}
+<table id="mosttyperesults">
+    <tbody>
+    {% for most in top_results %}
+    <td class="col_spacer"></td>
+    <td>The item with most <b>{{most.types}}</b> [{{most.views}}] is <em>{{most.title}}</em> and has tags <b>{{most.associated_tags}}</b>
+    </td>
+    <tr></tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+<div id="div-1a">
+{% if tag_results %}
+<h2>General Stats </h2>
+{% endif %}
+<table id="calulation">
+    <tbody>
+    <td>{{stats.python_comp_2}}% of Python questions are tagged Python-2.7</td>
+    <tr></tr>
+    <td>{{stats.python_comp_3}}% of Python questions are tagged Python-3.x</td>
+    <tr></tr>
+    <td>For {{stats.samples}} questions average number of votes is {{stats.mean_of_votes}}</td>
+     <tr></tr>
+    <td>For  {{stats.samples}} questions the median value of views is {{stats.median_of_views}}</td>
+    </tbody>
+</table>
+</div>
+</div>
+</body>
 </html>
