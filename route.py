@@ -8,8 +8,8 @@ app = Flask(__name__)
 @app.route('/')
 def show_route():
 
-    scraper = Scraper()
-
+    #runs scraper and will pull back 3 pages of data for mean and median statistics
+    scraper = Scraper(3)
 
     return render_template('route.html', tag_results=scraper.tag_categories, top_results=scraper.type_categories,
                            stats=scraper.stat_categories)

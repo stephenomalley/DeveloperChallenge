@@ -11,7 +11,8 @@ import re
 
 class Scraper(object):
 
-    def __init__(self):
+    def __init__(self, max_pages):
+        self.max_pages = max_pages
         self.tag_categories = []
         self.type_categories = []
         self.stat_categories = []
@@ -93,7 +94,7 @@ class Scraper(object):
             views += view_results
             votes += vote_results
 
-            if page_num == 2:
+            if page_num == self.max_pages:
                 break
 
         category.views = views
